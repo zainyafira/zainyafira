@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Deteksi Nomor Resi</title>
   <!-- Tambahkan stylesheet jika diperlukan -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <style>
     /* CSS styling */
   </style>
@@ -19,6 +20,40 @@
   <div id="result"></div>
 
   <!-- Tambahkan JavaScript -->
+<script>
+        $(document).ready(function() {
+            const zen = '1Za5T_8E5clKC8Gp6oyVjXC6GVcOS7QD75m4--ACNTnE';
+            const ind = 'AIzaSyA77b7M_StYj_BuOJVgKIhGsrCOPJDlT30';
+            const range = 'Sheet1'; // Ganti dengan nama sheet yang sesuai
+
+            const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${zen}/values/${range}?key=${ind}`;
+
+            $.ajax({
+                url: apiUrl,
+                method: 'GET',
+                success: function(response) {
+                    const values = response.values;
+
+                    if (values.length > 0) {
+                        const dataContainer = $('#data-container');
+                        dataContainer.append('<h2>Data dari Google Sheets:</h2>');
+
+                        values.forEach(function(row) {
+                            const rowString = `<p>${row.join(' | ')}</p>`;
+                            dataContainer.append(rowString);
+                        });
+                      console.log(values)
+                    } else {
+                        console.log('Tidak ada data ditemukan.');
+                    }
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+  
   <script>
     document.getElementById('trackingForm').addEventListener('submit', function(event) {
       event.preventDefault();
