@@ -28,20 +28,14 @@
   </script>
   
   <!-- Skrip untuk menghubungkan dengan Google Apps Script -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
   <script src="https://apis.google.com/js/api.js"></script>
-  <script src="https://zainyafira.github.io/Code.gs"></script>
   <script>
-    // Menginisialisasi Google API
     function init() {
       google.script.run.withSuccessHandler(function() {
         document.getElementById('trackingForm').style.display = 'block';
       }).init();
     }
     google.setOnLoadCallback(init);
-
-    
   </script>
 </body>
 </html>
